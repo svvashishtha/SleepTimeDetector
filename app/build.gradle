@@ -23,13 +23,15 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation deps.androidx.appCompat
     implementation deps.androidx.constraint_layout
+    implementation deps.androidx.recyclerview
     implementation deps.room.runtime
     annotationProcessor deps.room.compiler
     implementation deps.dagger.dagger
     annotationProcessor deps.dagger.compiler
+    implementation deps.androidx.lifecycle_extensions
+    annotationProcessor deps.androidx.lifecycle_compiler
     testImplementation 'junit:junit:4.12'
     androidTestImplementation deps.androidx.runner
     androidTestImplementation deps.androidx.espresso
-//    implementation deps.threeten.threeten
     implementation deps.gson
 }

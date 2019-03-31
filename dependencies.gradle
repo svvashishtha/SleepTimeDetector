@@ -13,7 +13,7 @@ versions.espresso = '3.2.0-alpha02'
 versions.daggerVersion = '2.21'
 versions.threeten = '1.3.8'
 versions.gson = '2.8.5'
-
+versions.lifecycle = '2.0.0'
 def room = [:]
 room.runtime = "androidx.room:room-runtime:$versions.room"
 room.compiler = "androidx.room:room-compiler:$versions.room"
@@ -27,6 +27,8 @@ androidx.recyclerview = "androidx.recyclerview:recyclerview:$versions.recycler"
 androidx.appCompat = "androidx.appcompat:appcompat:$versions.appCompat"
 androidx.runner = "androidx.test:runner:$versions.runner"
 androidx.espresso = "androidx.test.espresso:espresso-core:$versions.espresso"
+androidx.lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+androidx.lifecycle_compiler = "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
 deps.androidx = androidx
 
 deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"

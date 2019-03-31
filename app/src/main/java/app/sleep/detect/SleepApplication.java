@@ -20,7 +20,7 @@ public class SleepApplication extends Application {
         appComponent = AppComponent.Initializer.init(getApplicationContext());
     }
 
-    AppComponent getAppComponent() {
+    public AppComponent getAppComponent() {
         return appComponent;
     }
 }

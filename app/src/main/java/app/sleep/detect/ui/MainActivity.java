@@ -6,16 +6,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.inject.Inject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import app.sleep.detect.R;
 import app.sleep.detect.SleepApplication;
 import app.sleep.detect.SleepManagerService;
+import app.sleep.detect.data.SleepObject;
 import app.sleep.detect.injection.ViewModelFactory;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,23 +33,40 @@ public class MainActivity extends AppCompatActivity {
     ViewModelFactory viewModelFactory;
 
     MainViewModel mainViewModel;
+    SleepAdapter sleepAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SleepApplication.getApplication().getAppComponent().inject(this);
-        mainViewModel = ViewModelProviders.of(this, viewModelFactory).
-                get(MainViewModel.class);
+
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         start = findViewById(R.id.start);
         stop = findViewById(R.id.stop);
         sleepRecycler = findViewById(R.id.sleep_recycler);
         setUpRecycler();
+        setupViewModel();
         setOnClickListeners();
     }
 
+    private void setupViewModel() {
+        mainViewModel = ViewModelProviders.of(this, viewModelFactory).
+                get(MainViewModel.class);
+        mainViewModel.getSleepObjects().observe(this, new Observer<ArrayList<SleepObject>>() {
+            @Override
+            public void onChanged(ArrayList<SleepObject> sleepObjects) {
+                sleepAdapter.setList(sleepObjects);
+            }
+        });
+        mainViewModel.fetchSleepData();
+    }
+
     private void setUpRecycler() {
+        sleepRecycler.setLayoutManager(new LinearLayoutManager(this,
+                RecyclerView.VERTICAL, false));
+        sleepAdapter = new SleepAdapter();
+        sleepRecycler.setAdapter(sleepAdapter);
 
     }
 

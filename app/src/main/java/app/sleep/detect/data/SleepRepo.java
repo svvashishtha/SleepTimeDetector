@@ -1,6 +1,7 @@
 package app.sleep.detect.data;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.inject.Inject;
@@ -47,7 +48,7 @@ public class SleepRepo implements SleepSource.Repo {
             public void run() {
                 String dateString = null;
 //                if (date.getHour() >= 20 && date.getHour() <= 23) {
-                    dateString = DateConverter.formatter.format(date);
+                dateString = DateConverter.formatter.format(date);
                  /*}else {
                     OffsetDateTime tempDate = date.minusDays(1);
                     dateString = tempDate.format(DateConverter.formatter);
@@ -70,6 +71,28 @@ public class SleepRepo implements SleepSource.Repo {
             }
         });
 
+    }
+
+    @Override
+    public void getAllSleepObjects(final SleepSource.SleepObjectListOperationResult callback) {
+        appExecutors.diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                final ArrayList<SleepObject> sleepObjects = (ArrayList<SleepObject>) sleepDao.getAllSleepObjects();
+                appExecutors.mainThread().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (sleepObjects.size() > 0) {
+                            callback.onDataAvailable(sleepObjects);
+
+                        } else {
+                            callback.onDataNotAvailable();
+                        }
+                    }
+                });
+
+            }
+        });
     }
 
 

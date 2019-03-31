@@ -1,5 +1,7 @@
 package app.sleep.detect.data;
 
+import java.util.List;
+
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -12,4 +14,7 @@ public interface SleepDao {
 
     @Query("Select * from SleepObject where date LIKE :date")
     SleepObject getSleepObject(String date);
+
+    @Query("Select * from SleepObject order by date desc")
+    List<SleepObject> getAllSleepObjects();
 }

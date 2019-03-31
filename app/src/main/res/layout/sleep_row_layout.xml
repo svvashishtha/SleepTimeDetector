@@ -45,6 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_medium"
         android:text="7:00 am"
+        android:id="@+id/wake_up_time"
         android:textColor="@color/black"
         android:textSize="@dimen/normal_text"
         app:layout_constraintStart_toEndOf="@id/divider"

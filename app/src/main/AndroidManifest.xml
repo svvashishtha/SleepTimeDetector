@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <service
-            android:name=".SleepManagerService"
+            android:name=".sleepManager.SleepManagerService"
             android:enabled="true"
             android:exported="true"></service>
 
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".DeviceIdleListener">
+        <receiver android:name=".sleepManager.DeviceIdleListener">
             <intent-filter>
                 <action android:name="android.content.Intent.ACTION_SCREEN_OFF" />
                 <action android:name="android.intent.action.SCREEN_ON" />

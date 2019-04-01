@@ -1,4 +1,4 @@
-package app.sleep.detect;
+package app.sleep.detect.utils;
 
 import android.os.Handler;
 import android.os.Looper;

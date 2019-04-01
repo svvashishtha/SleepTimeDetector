@@ -1,4 +1,4 @@
-package app.sleep.detect;
+package app.sleep.detect.sleepManager;
 
 import android.app.Service;
 import android.content.Intent;
@@ -10,9 +10,12 @@ import java.util.Date;
 
 import javax.inject.Inject;
 
+import app.sleep.detect.SleepApplication;
 import app.sleep.detect.data.SleepObject;
 import app.sleep.detect.data.SleepRepo;
 import app.sleep.detect.data.SleepSource;
+import app.sleep.detect.utils.Logger;
+import app.sleep.detect.utils.SharedPreferencesProvider;
 
 public class SleepManagerService extends Service implements DeviceIdleListener.OnDeviceAccessedListener {
     public static final String SLEEP_TRACKER = "SLEEP_TRACKER";

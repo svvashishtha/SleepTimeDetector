@@ -6,8 +6,8 @@ import java.util.Date;
 
 import javax.inject.Inject;
 
-import app.sleep.detect.AppExecutors;
-import app.sleep.detect.Logger;
+import app.sleep.detect.utils.AppExecutors;
+import app.sleep.detect.utils.Logger;
 
 public class SleepRepo implements SleepSource.Repo {
 

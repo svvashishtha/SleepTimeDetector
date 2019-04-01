@@ -1,4 +1,4 @@
-package app.sleep.detect;
+package app.sleep.detect.sleepManager;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

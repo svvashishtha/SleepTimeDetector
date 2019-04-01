@@ -1,6 +1,7 @@
 package app.sleep.detect.ui;
 
 import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -18,7 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import app.sleep.detect.R;
 import app.sleep.detect.SleepApplication;
-import app.sleep.detect.SleepManagerService;
+import app.sleep.detect.sleepManager.SleepManagerService;
 import app.sleep.detect.data.SleepObject;
 import app.sleep.detect.injection.ViewModelFactory;
 
@@ -78,12 +79,11 @@ public class MainActivity extends AppCompatActivity {
                 cal.setTimeInMillis(System.currentTimeMillis());
                 cal.set(Calendar.HOUR_OF_DAY, 20);
 
-//                schedule an alarm to wake up service at 6 pm
+//                schedule an alarm to wake up service at 8 pm
                 Intent intent = new Intent(MainActivity.this, SleepManagerService.class);
                 intent.putExtra(SleepManagerService.SLEEP_TRACKER, true);
-                startService(intent);
-//                PendingIntent pintent = PendingIntent.getService(MainActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-//                alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, 0, 0, pintent);
+                PendingIntent pintent = PendingIntent.getService(MainActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, 0, 0, pintent);
 
             }
         });
@@ -92,10 +92,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SleepManagerService.class);
                 intent.putExtra(SleepManagerService.SLEEP_TRACKER, false);
-                startService(intent);
-                /*PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(
                         getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                alarmManager.cancel(pendingIntent);*/
+                alarmManager.cancel(pendingIntent);
             }
         });
     }

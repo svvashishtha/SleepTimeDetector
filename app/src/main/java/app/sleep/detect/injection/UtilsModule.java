@@ -1,6 +1,6 @@
 package app.sleep.detect.injection;
 
-import app.sleep.detect.AppExecutors;
+import app.sleep.detect.utils.AppExecutors;
 import dagger.Module;
 import dagger.Provides;
 

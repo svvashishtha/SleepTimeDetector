@@ -4,7 +4,7 @@ import android.content.Context;
 
 import javax.inject.Singleton;
 
-import app.sleep.detect.SleepManagerService;
+import app.sleep.detect.sleepManager.SleepManagerService;
 import app.sleep.detect.ui.MainActivity;
 import dagger.Component;
 

@@ -1,4 +1,4 @@
-package app.sleep.detect;
+package app.sleep.detect.utils;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
